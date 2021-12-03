@@ -24,7 +24,7 @@ public class GetOrderListTest {
     @Description ("Проверка получения списка заказов")
     public void orderListCanBeGetTest () {
 
-        // Создание заказа
+        // Получение списка заказов
         ValidatableResponse response = orderClient.getOrderList();
         // Получение статус кода
         int statusCode = response.extract().statusCode();

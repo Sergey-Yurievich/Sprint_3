@@ -5,7 +5,7 @@ import static io.restassured.RestAssured.given;
 public class OrderClient extends RestAssuredClient {
 
     private static final String ORDER_PATH = "/api/v1/orders";
-    private static final String GET_ORDER_PATH = "/api/v1/orders/track?t=";
+    private static final String GET_ORDER_PATH = "/api/v1/orders/track";
 
     @Step ("Создание заказа")
     public ValidatableResponse create (Order order){
@@ -29,8 +29,9 @@ public class OrderClient extends RestAssuredClient {
     public ValidatableResponse getOrder (int trackID){
         return given()
                 .spec(getBaseSpec())
+                .queryParam("t", trackID)
                 .when()
-                .get(GET_ORDER_PATH + trackID)
+                .get(GET_ORDER_PATH)
                 .then();
     }
 

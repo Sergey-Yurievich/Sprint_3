@@ -46,15 +46,15 @@ public class LoginCourierWithoutNecessaryFieldTest {
             courierId = successLogin.extract().path("id");
             // Пытаемся авторизоваться с данными из условия
             ValidatableResponse login = new CourierClient().login(courierCredentials);
-            // Получение сообщения об ошибке из тела ответа
-            String errorMessage = login.extract ().path ("message");
             // Получение статус кода из тела ответа
             int ActualStatusCode = login.extract ().statusCode();
-
-            // Проверяем что сообщение об ошибке соответствует ожидаемому
-            assertEquals ("Error message is  incorrect", expectedErrorMessage, errorMessage);
             // Проверяем что статус код соответствует ожидаемому
             assertEquals ("Status code is incorrect",expectedStatus, ActualStatusCode);
+            // Получение сообщения об ошибке из тела ответа
+            String errorMessage = login.extract ().path ("message");
+            // Проверяем что сообщение об ошибке соответствует ожидаемому
+            assertEquals ("Error message is  incorrect", expectedErrorMessage, errorMessage);
+
         }
 
     // Удаляем созданого курьера
